@@ -1,18 +1,19 @@
-let mySprite = sprites.create(img`
-    . . . . . . f f f f . . . . . . 
-    . . . . f f f 2 2 f f f . . . . 
-    . . . f f f 2 2 2 2 f f f . . . 
-    . . f f f e e e e e e f f f . . 
-    . . f f e 2 2 2 2 2 2 e e f . . 
-    . . f e 2 f f f f f f 2 e f . . 
-    . . f f f f e e e e f f f f . . 
-    . f f e f b f 4 4 f b f e f f . 
-    . f e e 4 1 f d 3 f 1 4 e e f . 
-    . . f e e d d d d d d e e f . . 
-    . . . f e e 4 4 4 4 e e f . . . 
-    . . e 4 f 2 2 2 2 2 2 f 4 e . . 
-    . . 4 d f 2 2 2 2 2 2 f d 4 . . 
-    . . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
-    . . . . . f f f f f f . . . . . 
-    . . . . . f f . . f f . . . . . 
-    `, SpriteKind.Player)
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile2 = sprites.createProjectileFromSprite(assets.image`p1p`, mySprite, 50, 100)
+})
+controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
+    projectile = sprites.createProjectileFromSprite(assets.image`p2p`, mySprite2, 50, 100)
+})
+controller.player2.onEvent(ControllerEvent.Connected, function () {
+    mySprite2.startEffect(effects.trail, 200)
+})
+let projectile: Sprite = null
+let projectile2: Sprite = null
+let mySprite2: Sprite = null
+let mySprite: Sprite = null
+mySprite = sprites.create(assets.image`p1`, SpriteKind.Player)
+controller.moveSprite(mySprite, 50, 50)
+mySprite2 = sprites.create(assets.image`p2`, SpriteKind.Player)
+controller.player2.moveSprite(mySprite2, 50, 100)
+mySprite2.setStayInScreen(true)
+mySprite.setStayInScreen(true)
